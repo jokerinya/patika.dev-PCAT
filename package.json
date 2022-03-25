@@ -1,0 +1,28 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "PCAT Photo App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokerinya/PCAT.git"
+  },
+  "keywords": [
+    "photo",
+    "app",
+    "camera",
+    "nodejs"
+  ],
+  "author": "Ibrahim Sakaci <sakacibrahim@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jokerinya/PCAT/issues"
+  },
+  "homepage": "https://github.com/jokerinya/PCAT#readme",
+  "devDependencies": {
+    "prettier": "2.6.1"
+  }
+}
