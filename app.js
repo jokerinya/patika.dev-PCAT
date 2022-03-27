@@ -27,7 +27,8 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Milddlewares
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public')); // bu daha saglikli
+// app.use(express.static('public'));
 // Bu iki body parser islemi yapar ve request bodysini yazmaya yarar
 app.use(express.urlencoded({ extended: true })); // urldeki datayi okumayi saglar
 app.use(express.json()); // urldeki datayi json yapar
@@ -51,8 +52,9 @@ app.post('/photos', async (req, res) => {
   res.redirect('/');
 });
 
-app.get('/de', (req, res) => {
-  res.render('video-page');
+app.get('/photos/:id', async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+  res.render('photo', { photo });
 });
 
 const port = process.env.PORT || 3000;
