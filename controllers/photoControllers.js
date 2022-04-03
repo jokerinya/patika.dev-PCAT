@@ -41,8 +41,7 @@ exports.createPhoto = async (req, res) => {
   // check how many photos are in uploaddir
   const length = fs.readdirSync(uploadDir).length;
   const maxPhotoNum = 5;
-  if (length === maxPhotoNum) {
-    console.log('burada');
+  if (length >= maxPhotoNum) {
     res.render('error', {
       title: `Max image number is ${maxPhotoNum}!`,
       message: 'Delete at least one photo to upload your photo',
