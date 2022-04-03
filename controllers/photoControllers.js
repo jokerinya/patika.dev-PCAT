@@ -38,17 +38,28 @@ exports.createPhoto = async (req, res) => {
     fs.mkdirSync(uploadDir);
   }
 
-  let uploadImage = req.files.image; // resmim
-  let uploadPath = __dirname + '/../public/uploads/' + uploadImage.name; // gonderecegim yol
-
-  // gonderen fonksiyon
-  uploadImage.mv(uploadPath, async () => {
-    await Photo.create({
-      ...req.body,
-      image: '/uploads/' + uploadImage.name,
+  // check how many photos are in uploaddir
+  const length = fs.readdirSync(uploadDir).length;
+  const maxPhotoNum = 10;
+  if (length === maxPhotoNum) {
+    console.log('burada');
+    res.render('error', {
+      title: `Max image number is ${maxPhotoNum}!`,
+      message: 'Delete at least one photo to upload your photo',
     });
-    res.redirect('/');
-  });
+  } else {
+    let uploadImage = req.files.image; // resmim
+    let uploadPath = __dirname + '/../public/uploads/' + uploadImage.name; // gonderecegim yol
+
+    // gonderen fonksiyon
+    uploadImage.mv(uploadPath, async () => {
+      await Photo.create({
+        ...req.body,
+        image: '/uploads/' + uploadImage.name,
+      });
+      res.redirect('/');
+    });
+  }
 };
 
 exports.updatePhoto = async (req, res) => {
