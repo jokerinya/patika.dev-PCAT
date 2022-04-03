@@ -40,7 +40,7 @@ exports.createPhoto = async (req, res) => {
 
   // check how many photos are in uploaddir
   const length = fs.readdirSync(uploadDir).length;
-  const maxPhotoNum = 10;
+  const maxPhotoNum = 5;
   if (length === maxPhotoNum) {
     console.log('burada');
     res.render('error', {
