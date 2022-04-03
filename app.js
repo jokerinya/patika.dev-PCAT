@@ -16,14 +16,14 @@ const app = express();
 // Connect to db
 (async () => {
   try {
-    await mangoose.connect('mongodb://0.0.0.0:27017/pcat-test-db', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      // useFindAndModify: false, // bu olmasada olur node 17
-    });
-    // await mangoose.connect(
-    //   'mongodb+srv://jokerinya:TpkvDebap5auNAIY@cluster0.kkt0d.mongodb.net/pcat-db?retryWrites=true&w=majority'
-    // );
+    // await mangoose.connect('mongodb://0.0.0.0:27017/pcat-test-db', {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    //   // useFindAndModify: false, // bu olmasada olur node 17
+    // });
+    await mangoose.connect(
+      'mongodb+srv://jokerinya:TpkvDebap5auNAIY@cluster0.kkt0d.mongodb.net/pcat-db?retryWrites=true&w=majority'
+    );
     console.log('Connected to db');
   } catch (error) {
     console.log(error);
