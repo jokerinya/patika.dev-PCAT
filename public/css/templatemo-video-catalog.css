@@ -269,17 +269,12 @@ p {
   padding-bottom: 35px;
 }
 
-<<<<<<< HEAD
 .tm-page-title {
   font-size: 2.5rem;
 }
 .tm-catalog-item-list {
   justify-content: space-evenly;
 }
-=======
-.tm-page-title { font-size: 2.5rem; }
-.tm-catalog-item-list { justify-content: space-evenly; }
->>>>>>> dcdbecdcfd2436fbbb15d469cf7d50963759cfeb
 
 .tm-catalog-item {
   max-width: 462px;
