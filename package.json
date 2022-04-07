@@ -4,7 +4,8 @@
   "description": "PCAT Photo App",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "local-start": "nodemon app.js"
   },
   "repository": {
     "type": "git",

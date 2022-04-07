@@ -22,8 +22,16 @@ exports.getAllPhotos = async (req, res) => {
 };
 
 exports.getOnePhoto = async (req, res) => {
-  const photo = await Photo.findById(req.params.id);
-  res.render('photo', { photo });
+  try {
+    const photo = await Photo.findById(req.params.id);
+    res.render('photo', { photo });
+  } catch (error) {
+    console.log(error);
+    res.render('error', {
+      title: "Can't Find Photo",
+      message: "Can't find your page, please check your link and try again.",
+    });
+  }
 };
 
 exports.createPhoto = async (req, res) => {
@@ -62,18 +70,34 @@ exports.createPhoto = async (req, res) => {
 };
 
 exports.updatePhoto = async (req, res) => {
-  const photo = await Photo.findById(req.params.id);
-  photo.title = req.body.title;
-  photo.description = req.body.description;
-  photo.save();
-  res.redirect(`/photos/${photo._id}`);
+  try {
+    const photo = await Photo.findById(req.params.id);
+    photo.title = req.body.title;
+    photo.description = req.body.description;
+    photo.save();
+    res.redirect(`/photos/${photo._id}`);
+  } catch (error) {
+    console.log(error);
+    res.render('error', {
+      title: "Can't Find Photo",
+      message: "Can't find your page, please check your link and try again.",
+    });
+  }
 };
 
 exports.deletePhoto = async (req, res) => {
-  const photo = await Photo.findById(req.params.id);
-  // dosyadan kaldir
-  let deletedImagePath = __dirname + '/../public' + photo.image;
-  fs.unlinkSync(deletedImagePath);
-  await Photo.findByIdAndDelete(photo._id);
-  res.redirect('/');
+  try {
+    const photo = await Photo.findById(req.params.id);
+    // dosyadan kaldir
+    let deletedImagePath = __dirname + '/../public' + photo.image;
+    fs.unlinkSync(deletedImagePath);
+    await Photo.findByIdAndDelete(photo._id);
+    res.redirect('/');
+  } catch (error) {
+    console.log(error);
+    res.render('error', {
+      title: "Can't Find Photo",
+      message: "Can't find your page, please check your link and try again.",
+    });
+  }
 };

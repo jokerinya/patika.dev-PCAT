@@ -9,8 +9,16 @@ exports.getAddPage = (req, res) => {
 };
 
 exports.getEditPage = async (req, res) => {
-  const photo = await Photo.findById(req.params.id);
-  res.render('edit', { photo });
+  try {
+    const photo = await Photo.findById(req.params.id);
+    res.render('edit', { photo });
+  } catch (error) {
+    console.log(error);
+    res.render('error', {
+      title: "Can't Find Photo",
+      message: "Can't find your page, please check try again.",
+    });
+  }
 };
 
 exports.getErrorPage = async (req, res) => {
