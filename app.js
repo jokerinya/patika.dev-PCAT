@@ -10,6 +10,8 @@ var methodOverride = require('method-override');
 const photoControllers = require('./controllers/photoControllers');
 const pageController = require('./controllers/pageController');
 
+require('dotenv').config();
+
 // start app
 const app = express();
 
@@ -22,7 +24,7 @@ const app = express();
     //   // useFindAndModify: false, // bu olmasada olur node 17
     // });
     await mangoose.connect(
-      'mongodb+srv://jokerinya:TpkvDebap5auNAIY@cluster0.kkt0d.mongodb.net/pcat-db?retryWrites=true&w=majority'
+      `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_USER_PASSWORD}@${process.env.DB_CLUSTER_ADDRESS}/${process.env.DB_NAME}?retryWrites=true&w=majority`
     );
     console.log('Connected to db');
   } catch (error) {
