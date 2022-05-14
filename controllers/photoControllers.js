@@ -95,9 +95,14 @@ exports.deletePhoto = async (req, res) => {
     res.redirect('/');
   } catch (error) {
     console.log(error);
+    if (error.code == 'ENOENT') {
+      // this is required for heroku ephemeral file system
+      await Photo.findByIdAndDelete(req.params.id);
+    }
     res.render('error', {
       title: "Can't Find Photo",
-      message: "Can't find your page, please check your link and try again.",
+      message:
+        "Can't find your photo, that is why description has been also deleted.",
     });
   }
 };
